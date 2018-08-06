@@ -1,0 +1,36 @@
+.modal-background.full-page-background {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0.4);  
+}
+
+.modal-popup {
+    width: 20%;
+    height: 15%;
+    background-color: white;
+    font-weight: bold;
+    font-size: 30px;
+    border: none;
+    box-shadow: white 2px 0px 2px 5px;
+    border-radius: 5px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.win {
+    color: green;
+}
+
+.lose {
+    color: red;
+}
+
+.draw {
+    color: darkblue;
+}
