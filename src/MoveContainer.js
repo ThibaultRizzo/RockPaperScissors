@@ -4,16 +4,19 @@ import './MoveContainer.css';
 import { GameMoves } from './Rules.js';
 
 class MoveContainer extends Component {
-  onMoveClicked = move => {
-    this.props.onMoveClicked(move);
-  };
   render() {
     const movesList = GameMoves.map(move => {
       return (
         <Move key={move} type={move} onMoveClicked={this.props.onMoveClicked} />
       );
     });
-    return <div id="MoveContainer">{movesList}</div>;
+    const gameType = this.props.gameType ? this.props.gameType : false;
+    return (
+    <div id="MoveContainer">
+      <h1 className="game-type">{gameType}</h1>
+      {movesList}
+    </div>
+    );
   }
 }
 

@@ -13,20 +13,16 @@
   height: 150px;
   border-radius: 50%;
   background: rgb(154, 101, 23);
-  background: radial-gradient(
-    circle,
-    rgba(255, 182, 74, 1) 41%,
-    rgba(255, 226, 175, 1) 100%
-  );
+  background: radial-gradient( circle, rgba(255, 182, 74, 1) 41%, rgba(255, 226, 175, 1) 100%);
   box-shadow: rgba(255, 226, 175, 1) 0px 0px 1px 2px;
-
   transition: all 0.5s;
 }
+
 .Move:hover {
   box-shadow: rgba(255, 226, 175, 1) 0px 0px 1px 20px;
 }
 
-.Move > input {
+.Move>input {
   border: none;
   width: 60%;
   height: 60%;
@@ -36,13 +32,22 @@
   transition: all 0.5s;
 }
 
-.Move > input:focus {
+.Move>input:focus {
   outline: none;
 }
 
-.Move > input:hover {
+.Move>input:hover {
   width: 70%;
   height: 70%;
+}
+
+.game-type {
+  flex-basis: 100%;
+  text-align: center;
+  color: #8c7272;
+  font-style: italic;
+  font-size: 50px;
+  margin: 0;
 }
 
 input[name='SCISSORS'] {

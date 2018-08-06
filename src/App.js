@@ -1,67 +1,28 @@
 import React, { Component } from 'react';
 import './App.css';
+import Overlay from './Overlay.js';
+import Header from './Header.js';
 import MoveContainer from './MoveContainer.js';
 import GameResult from './GameResult.js';
+import ModalPopup from './ModalPopup.js';
 import PlayersHistory from './PlayersHistory.js';
 import { resolveTurn } from './Rules.js';
-
-class Header extends Component {
-  createGame = () => {
-    console.log('Create');
-  };
-  render() {
-    const title = 'Waste an Hour Having Fun';
-    return (
-      <div id="Header">
-        <header>{title}</header>
-        <div id="header-options">
-          <input
-            type="button"
-            value="New Game"
-            className="header-button"
-            onClick={e => this.createGame()}
-          />
-        </div>
-      </div>
-    );
-  }
-}
-
-class Overlay extends Component {
-  render() {
-    return (
-      <div className="Overlay">
-        <h1>Overlay</h1>
-        <input
-          type="button"
-          value="Player vs AI"
-          className="header-button"
-          onClick={e => this.props.onOptionChosed}
-        />
-        <input
-          type="button"
-          value="AI vs AI"
-          className="header-button"
-          onClick={e => this.props.onOptionChosed}
-        />
-      </div>
-    );
-  }
-}
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.onPlayerMove = this.onPlayerMove.bind(this);
+    this.setGameType = this.setGameType.bind(this);
+    this.closePopup = this.closePopup.bind(this);
     this.state = {
       turn: null,
-      gameType: null
+      gameType: null,
+      showModal: false,
     };
   }
 
   componentDidMount() {
     // Calls moveResolveService and renders result if result is not null
-    console.dir(this.state);
   }
 
   /**
@@ -73,29 +34,41 @@ class App extends Component {
   }
 
   displayResults(currentTurn) {
-    this.setState({ turn: currentTurn });
+    this.setState({ turn: currentTurn, showModal: true });
   }
 
-  setGameType(e) {
-    debugger;
-    this.setState({ gameType: e.target.value });
+  setGameType(type) {
+    this.setState({ gameType: type });
+  }
+
+  closePopup() {
+    this.setState({ showModal: false });
   }
 
   render() {
     let content;
-    if (!this.state.gameType) {
-      content = <Overlay onOptionChosed={this.setGameType} />;
-    } else {
-      content = (
-        <React.StrictMode>
-          <Header />
-          <MoveContainer onMoveClicked={this.onPlayerMove} />
-          <GameResult turn={this.state.turn} />
-          <PlayersHistory />
-        </React.StrictMode>
-      );
+    let overlay = false;
+    let modal = false;
+    if(this.state.showModal && this.state.turn) {
+      modal = <ModalPopup closePopup={this.closePopup} result={this.state.turn.result} turn={this.state.turn}/>
     }
-    return <div id="App">{content}</div>;
+    if (!this.state.gameType) {
+      overlay = <Overlay onOptionChosed={this.setGameType} />;
+    }
+    content = (
+      <React.StrictMode>
+        <Header onCreateNewGame={this.setGameType} />
+        <MoveContainer gameType={this.state.gameType} onMoveClicked={this.onPlayerMove} />
+        <GameResult turn={this.state.turn} />
+        <PlayersHistory />
+      </React.StrictMode>
+    );
+    return (
+    <div id="App">
+      {overlay}
+      {content}
+      {modal}
+    </div>);
   }
 }
 
