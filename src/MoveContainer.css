@@ -1,0 +1,58 @@
+.MoveContainer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Move {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: rgb(154, 101, 23);
+  background: radial-gradient(
+    circle,
+    rgba(255, 182, 74, 1) 41%,
+    rgba(255, 226, 175, 1) 100%
+  );
+  box-shadow: rgba(255, 226, 175, 1) 0px 0px 1px 2px;
+
+  transition: all 0.5s;
+}
+.Move:hover {
+  box-shadow: rgba(255, 226, 175, 1) 0px 0px 1px 20px;
+}
+
+.Move > input {
+  border: none;
+  width: 60%;
+  height: 60%;
+  background-size: 100%;
+  background-clip: content-box;
+  background-origin: content-box;
+  transition: all 0.5s;
+}
+
+.Move > input:focus {
+  outline: none;
+}
+
+.Move > input:hover {
+  width: 70%;
+  height: 70%;
+}
+
+input[name='SCISSORS'] {
+  background: url('./resources/scissors.svg') no-repeat;
+}
+
+input[name='PAPER'] {
+  background: url('./resources/paper.svg') no-repeat;
+}
+
+input[name='ROCK'] {
+  background: url('./resources/rock.svg') no-repeat;
+}
