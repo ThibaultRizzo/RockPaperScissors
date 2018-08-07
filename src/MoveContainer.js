@@ -12,10 +12,13 @@ class MoveContainer extends Component {
     });
     const gameType = this.props.gameType ? this.props.gameType : false;
     return (
-    <div id="MoveContainer">
-      <h1 className="game-type">{gameType}</h1>
-      {movesList}
-    </div>
+      <div id="MoveContainer">
+        <h1 className="game-type">{gameType}</h1>
+        <h2 className="number-turn">
+          Number of turns: {this.props.maxTurnNumber}
+        </h2>
+        {movesList}
+      </div>
     );
   }
 }

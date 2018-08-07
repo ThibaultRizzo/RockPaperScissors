@@ -4,7 +4,7 @@ class Move extends Component {
   render() {
     const moveType = this.props.type;
     return (
-      <div className="Move">
+      <div className="Move  ">
         <input
           type="button"
           name={moveType}

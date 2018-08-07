@@ -18,11 +18,10 @@ class App extends Component {
       turn: null,
       gameType: null,
       showModal: false,
+      currentTurnNumber: false,
+      maxTurnNumber: false,
+      isGameFinished: false
     };
-  }
-
-  componentDidMount() {
-    // Calls moveResolveService and renders result if result is not null
   }
 
   /**
@@ -33,12 +32,39 @@ class App extends Component {
     this.displayResults(turn);
   }
 
-  displayResults(currentTurn) {
-    this.setState({ turn: currentTurn, showModal: true });
+  incrementTurnNumber() {
+    let currentTurnNumber = this.state.currentTurnNumber;
+    let maxTurnNumber = this.state.maxTurnNumber;
+    return currentTurnNumber < maxTurnNumber
+      ? currentTurnNumber + 1
+      : currentTurnNumber;
   }
 
-  setGameType(type) {
-    this.setState({ gameType: type });
+  displayResults(currentTurn) {
+    let gameStatus = false;
+    let nextTurnNumber = this.incrementTurnNumber();
+    debugger;
+    if (nextTurnNumber === this.state.maxTurnNumber) {
+      gameStatus = true;
+    }
+    console.log('Turn number', nextTurnNumber);
+    console.log('Game Status', gameStatus);
+    console.dir(currentTurn);
+    this.setState({
+      turn: currentTurn,
+      showModal: true,
+      isGameFinished: gameStatus,
+      currentTurnNumber: nextTurnNumber
+    });
+  }
+
+  setGameType(turnNumber, type) {
+    this.setState({
+      gameType: type,
+      currentTurnNumber: 0,
+      maxTurnNumber: turnNumber,
+      isGameFinished: false
+    });
   }
 
   closePopup() {
@@ -49,26 +75,45 @@ class App extends Component {
     let content;
     let overlay = false;
     let modal = false;
-    if(this.state.showModal && this.state.turn) {
-      modal = <ModalPopup closePopup={this.closePopup} result={this.state.turn.result} turn={this.state.turn}/>
+    let gameStatus = this.state.isGameFinished;
+    if (this.state.showModal && this.state.turn) {
+      modal = (
+        <ModalPopup
+          closePopup={this.closePopup}
+          result={this.state.turn.result}
+          turn={this.state.turn}
+        />
+      );
     }
     if (!this.state.gameType) {
       overlay = <Overlay onOptionChosed={this.setGameType} />;
     }
     content = (
       <React.StrictMode>
-        <Header onCreateNewGame={this.setGameType} />
-        <MoveContainer gameType={this.state.gameType} onMoveClicked={this.onPlayerMove} />
-        <GameResult turn={this.state.turn} />
+        <Header
+          isGameFinished={gameStatus}
+          onCreateNewGame={this.setGameType}
+        />
+        <MoveContainer
+          isGameFinished={gameStatus}
+          maxTurnNumber={this.state.maxTurnNumber}
+          gameType={this.state.gameType}
+          onMoveClicked={this.onPlayerMove}
+        />
+        <div
+          className={this.state.isGameFinished ? 'deactivation-panel' : ''}
+        />
+        <GameResult isGameFinished={gameStatus} turn={this.state.turn} />
         <PlayersHistory />
       </React.StrictMode>
     );
     return (
-    <div id="App">
-      {overlay}
-      {content}
-      {modal}
-    </div>);
+      <div id="App">
+        {overlay}
+        {content}
+        {modal}
+      </div>
+    );
   }
 }
 
