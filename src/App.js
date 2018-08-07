@@ -43,7 +43,6 @@ class App extends Component {
   displayResults(currentTurn) {
     let gameStatus = false;
     let nextTurnNumber = this.incrementTurnNumber();
-    debugger;
     if (nextTurnNumber === this.state.maxTurnNumber) {
       gameStatus = true;
     }
@@ -103,7 +102,7 @@ class App extends Component {
         <div
           className={this.state.isGameFinished ? 'deactivation-panel' : ''}
         />
-        <GameResult isGameFinished={gameStatus} turn={this.state.turn} />
+        <GameResult isGameFinished={gameStatus} turn={this.state.turn} turnNumber={this.state.currentTurnNumber}/>
         <PlayersHistory />
       </React.StrictMode>
     );

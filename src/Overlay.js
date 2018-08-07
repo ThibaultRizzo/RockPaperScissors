@@ -12,11 +12,11 @@ class TurnDropDown extends Component {
     };
   }
   onSelectTurn = e => {
-    debugger;
     this.setState({
       isDropdownExpanded: false
     });
-    this.props.selectTurn(parseInt(e, 10));
+    const turnValue = parseInt(e.target.textContent, 10)
+    this.props.selectTurn(turnValue);
   };
 
   toggleDropdown = e => {
@@ -26,7 +26,7 @@ class TurnDropDown extends Component {
     });
   };
   render() {
-    let turnChoices;
+    let turnChoices = false
     if (this.state.isDropdownExpanded) {
       turnChoices = [];
       for (let i = 3; i <= this.props.maxTurn; i++) {
@@ -42,8 +42,6 @@ class TurnDropDown extends Component {
           </div>
         );
       }
-    } else {
-      turnChoices = false;
     }
 
     return (
@@ -73,9 +71,9 @@ class Overlay extends Component {
     this.props.onOptionChosed(currentTurn, e.target.value);
   };
 
-  selectTurn = e => {
+  selectTurn = turnNumber => {
     this.setState({
-      currentTurn: e.target.textContent,
+      currentTurn: turnNumber,
       isDropdownExpanded: false
     });
   };
