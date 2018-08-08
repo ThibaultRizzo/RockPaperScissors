@@ -64,14 +64,12 @@ class App extends Component {
   }
 
   /**
-   * Increment turn number if maximum turn count
+   * Increment turn number if less than maximum turn count else returns -1.
    */
   incrementturnCount() {
     let currentturnCount = this.state.currentturnCount;
     let maxturnCount = this.state.maxturnCount;
-    return currentturnCount < maxturnCount
-      ? currentturnCount + 1
-      : currentturnCount;
+    return currentturnCount < maxturnCount ? currentturnCount + 1 : -1;
   }
 
   displayResults(currentTurn) {
@@ -83,17 +81,16 @@ class App extends Component {
       gameStatus = true;
       this.onGameEnd(this.state.turns, gameStatus);
     }
-    debugger;
-    console.log('Turn number', nextturnCount);
-    console.log('Game Status', gameStatus);
-    console.dir(currentTurn);
-    this.setState({
-      turn: currentTurn,
-      showModal: true,
-      isGameFinished: gameStatus,
-      currentturnCount: nextturnCount,
-      turns: updatedTurnArray
-    });
+    // If turnCount gets out of boundaries, state is not updated
+    if (nextturnCount !== -1) {
+      this.setState({
+        turn: currentTurn,
+        showModal: true,
+        isGameFinished: gameStatus,
+        currentturnCount: nextturnCount,
+        turns: updatedTurnArray
+      });
+    }
   }
 
   setGameType(turnCount, type) {

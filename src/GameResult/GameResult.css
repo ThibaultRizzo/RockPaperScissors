@@ -42,15 +42,3 @@
 .player-2.lose {
   color: green;
 }
-
-.draw {
-  color: blue;
-}
-
-.win {
-  color: green;
-}
-
-.lose {
-  color: red;
-}

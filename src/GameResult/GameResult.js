@@ -28,7 +28,6 @@ class GameResult extends Component {
     let turnRows = this.props.turnArray.map((move, i) => (
       <TurnRow key={i} turnCount={i} turn={move} />
     ));
-    debugger;
     return (
       <div id="GameResult">
         <div className="result-grid">{turnRows}</div>

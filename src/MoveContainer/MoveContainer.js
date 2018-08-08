@@ -14,7 +14,14 @@ class MoveContainer extends Component {
 
     const gameType = this.props.gameType ? this.props.gameType : false;
     if (gameType === 'AI vs AI' && !this.props.isGameFinished) {
-      setTimeout(this.props.onMoveClicked(generateRandomMove()), 1000);
+      setTimeout(
+        this.props.onMoveClicked,
+        generateRandomMove(),
+        generateRandomMove(),
+        1000
+      );
+    } else if (this.props.isGameFinished) {
+      clearTimeout();
     }
     return (
       <div id="MoveContainer">

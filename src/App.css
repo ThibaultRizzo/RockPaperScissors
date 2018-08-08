@@ -93,6 +93,18 @@ input.special-button:hover {
   transition: all 0.5s;
 }
 
+.draw {
+  color: blue;
+}
+
+.win {
+  color: green;
+}
+
+.lose {
+  color: red;
+}
+
 .deactivation-panel {
   grid-area: moves;
   background-color: white;

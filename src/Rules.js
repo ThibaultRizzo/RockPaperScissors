@@ -135,3 +135,22 @@ export function summarizeGame(game) {
   }
   return gameResult;
 }
+
+/**
+ * Calculates win rate of player given all games recorded, else return O
+ * @param {*} games
+ */
+export function workWinRate(games) {
+  let wins = 0;
+
+  games.forEach(game => {
+    let details = game[game.length - 1];
+    if (details.result === Result.WIN) {
+      wins++;
+    }
+  });
+
+  let winRate =
+    Object.keys(games).length !== 0 ? wins / Object.keys(games).length : 0;
+  return Math.floor(winRate * 100) + '%';
+}
