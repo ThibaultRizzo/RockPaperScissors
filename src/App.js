@@ -6,7 +6,7 @@ import MoveContainer from './MoveContainer/MoveContainer.js';
 import GameResult from './GameResult/GameResult.js';
 import ModalPopup from './ModalPopup.js';
 import PlayersHistory from './PlayersHistory/PlayersHistory.js';
-import { resolveTurn } from './Rules.js';
+import { resolveTurn, summarizeGame, GameType } from './Rules.js';
 
 class App extends Component {
   constructor(props) {
@@ -15,15 +15,15 @@ class App extends Component {
     this.setGameType = this.setGameType.bind(this);
     this.displayResults = this.displayResults.bind(this);
     this.closePopup = this.closePopup.bind(this);
-    this.incrementTurnNumber = this.incrementTurnNumber.bind(this);
+    this.incrementturnCount = this.incrementturnCount.bind(this);
     this.onGameEnd = this.onGameEnd.bind(this);
     this.addGameResults = this.addGameResults.bind(this);
     this.state = {
       turn: null,
       gameType: null,
       showModal: false,
-      currentTurnNumber: false,
-      maxTurnNumber: false,
+      currentturnCount: false,
+      maxturnCount: false,
       isGameFinished: false,
       turns: [],
       games: []
@@ -38,69 +38,69 @@ class App extends Component {
     this.displayResults(turn);
   }
 
+  /**
+   * Add last game to the state
+   * @param {*} game
+   */
   onGameEnd(game) {
     this.setState(prevState => ({
       games: [...prevState.games, this.addGameResults(game)]
     }));
   }
 
+  /**
+   * Enhances game object with details property.
+   * ex:
+   *      details: {
+   *          result: -> Result enum object
+   *          scoreP1: -> Number of turn won by P1
+   *          scoreP2: -> Number of turn won by P2
+   *      }
+   * @param {*} game
+   */
   addGameResults(game) {
-    let gameResult = {
-      result: 0,
-      scoreP1: 0,
-      scoreP2: 0
-    };
-    game.forEach(turn => {
-      if ('WIN' === turn.result) {
-        gameResult.scoreP1++;
-      } else if ('LOSE' === turn.result) {
-        gameResult.scoreP2++;
-      }
-    });
-    if (gameResult.scoreP1 > gameResult.scoreP2) {
-      gameResult.result = 'WIN';
-    } else if (gameResult.scoreP1 < gameResult.scoreP2) {
-      gameResult.result = 'DRAW';
-    } else {
-      gameResult.result = 'LOSE';
-    }
+    let gameResult = summarizeGame(game);
     return [...game, gameResult];
   }
 
-  incrementTurnNumber() {
-    let currentTurnNumber = this.state.currentTurnNumber;
-    let maxTurnNumber = this.state.maxTurnNumber;
-    return currentTurnNumber < maxTurnNumber
-      ? currentTurnNumber + 1
-      : currentTurnNumber;
+  /**
+   * Increment turn number if maximum turn count
+   */
+  incrementturnCount() {
+    let currentturnCount = this.state.currentturnCount;
+    let maxturnCount = this.state.maxturnCount;
+    return currentturnCount < maxturnCount
+      ? currentturnCount + 1
+      : currentturnCount;
   }
 
   displayResults(currentTurn) {
     let gameStatus = false;
     let updatedTurnArray = this.state.turns;
     updatedTurnArray.push(currentTurn);
-    let nextTurnNumber = this.incrementTurnNumber();
-    if (nextTurnNumber === this.state.maxTurnNumber) {
+    let nextturnCount = this.incrementturnCount();
+    if (nextturnCount === this.state.maxturnCount) {
       gameStatus = true;
       this.onGameEnd(this.state.turns, gameStatus);
     }
-    console.log('Turn number', nextTurnNumber);
+    debugger;
+    console.log('Turn number', nextturnCount);
     console.log('Game Status', gameStatus);
     console.dir(currentTurn);
     this.setState({
       turn: currentTurn,
       showModal: true,
       isGameFinished: gameStatus,
-      currentTurnNumber: nextTurnNumber,
+      currentturnCount: nextturnCount,
       turns: updatedTurnArray
     });
   }
 
-  setGameType(turnNumber, type) {
+  setGameType(turnCount, type) {
     this.setState({
       gameType: type,
-      currentTurnNumber: 0,
-      maxTurnNumber: turnNumber,
+      currentturnCount: 0,
+      maxturnCount: turnCount,
       isGameFinished: false,
       turns: []
     });
@@ -118,7 +118,7 @@ class App extends Component {
     if (
       this.state.showModal &&
       this.state.turn &&
-      this.state.gameType === 'Player vs AI'
+      this.state.gameType === GameType.PlayerVsAI
     ) {
       modal = (
         <ModalPopup
@@ -139,7 +139,7 @@ class App extends Component {
         />
         <MoveContainer
           isGameFinished={gameStatus}
-          maxTurnNumber={this.state.maxTurnNumber}
+          maxturnCount={this.state.maxturnCount}
           gameType={this.state.gameType}
           onMoveClicked={this.onPlayerMove}
         />
@@ -149,7 +149,7 @@ class App extends Component {
         <GameResult
           isGameFinished={gameStatus}
           turnArray={this.state.turns}
-          turnNumber={this.state.currentTurnNumber}
+          turnCount={this.state.currentturnCount}
         />
         <PlayersHistory gameHistory={this.state.games} />
       </React.StrictMode>

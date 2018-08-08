@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Overlay.css';
+import { GameType } from '../Rules';
 
 class TurnDropDown extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class TurnDropDown extends Component {
     this.setState({
       isDropdownExpanded: false
     });
-    const turnValue = parseInt(e.target.textContent, 10)
+    const turnValue = parseInt(e.target.textContent, 10);
     this.props.selectTurn(turnValue);
   };
 
@@ -26,7 +27,7 @@ class TurnDropDown extends Component {
     });
   };
   render() {
-    let turnChoices = false
+    let turnChoices = false;
     if (this.state.isDropdownExpanded) {
       turnChoices = [];
       for (let i = 3; i <= this.props.maxTurn; i++) {
@@ -71,9 +72,9 @@ class Overlay extends Component {
     this.props.onOptionChosed(currentTurn, e.target.value);
   };
 
-  selectTurn = turnNumber => {
+  selectTurn = turnCount => {
     this.setState({
-      currentTurn: turnNumber,
+      currentTurn: turnCount,
       isDropdownExpanded: false
     });
   };
@@ -82,13 +83,13 @@ class Overlay extends Component {
       <div id="Overlay" className="full-page-background smooth-appear">
         <input
           type="button"
-          value="Player vs AI"
+          value={GameType.PlayerVsAI}
           className="overlay-button special-button"
           onClick={e => this.setGameType(this.state.currentTurn, e)}
         />
         <input
           type="button"
-          value="AI vs AI"
+          value={GameType.AIVsAI}
           className="overlay-button special-button"
           onClick={e => this.setGameType(this.state.currentTurn, e)}
         />
