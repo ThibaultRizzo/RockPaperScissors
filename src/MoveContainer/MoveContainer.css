@@ -62,13 +62,13 @@
 }
 
 input[name='SCISSORS'] {
-  background: url('./resources/scissors.svg') no-repeat;
+  background: url('./../resources/scissors.svg') no-repeat;
 }
 
 input[name='PAPER'] {
-  background: url('./resources/paper.svg') no-repeat;
+  background: url('./../resources/paper.svg') no-repeat;
 }
 
 input[name='ROCK'] {
-  background: url('./resources/rock.svg') no-repeat;
+  background: url('./../resources/rock.svg') no-repeat;
 }

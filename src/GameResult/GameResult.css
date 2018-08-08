@@ -1,0 +1,56 @@
+#GameResult {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.result-grid {
+  flex: 0 0 70%;
+  height: 50%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: #7d7d7d 0px 0px 31px 6px;
+}
+
+.turn-row {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: stretch;
+  height: 100%;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.turn-number {
+  font-weight: bolder;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.player-1,
+.player-2 {
+  font-weight: bolder;
+}
+
+.player-2.win {
+  color: red;
+}
+
+.player-2.lose {
+  color: green;
+}
+
+.draw {
+  color: blue;
+}
+
+.win {
+  color: green;
+}
+
+.lose {
+  color: red;
+}

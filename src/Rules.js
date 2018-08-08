@@ -51,7 +51,7 @@ function winner(p1, p2) {
   return result;
 }
 
-function generateRandomMove() {
+export function generateRandomMove() {
   const randomPosition = Math.floor(Math.random() * GameMoves.length);
   const result = GameMoves[randomPosition];
   console.log(`Computer just chose ${result}`);

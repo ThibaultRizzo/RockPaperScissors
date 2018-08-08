@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import Overlay from './Overlay.js';
-import Header from './Header.js';
-import MoveContainer from './MoveContainer.js';
-import GameResult from './GameResult.js';
+import Overlay from './Overlay/Overlay.js';
+import Header from './Header/Header.js';
+import MoveContainer from './MoveContainer/MoveContainer.js';
+import GameResult from './GameResult/GameResult.js';
 import ModalPopup from './ModalPopup.js';
-import PlayersHistory from './PlayersHistory.js';
+import PlayersHistory from './PlayersHistory/PlayersHistory.js';
 import { resolveTurn } from './Rules.js';
 
 class App extends Component {
@@ -13,14 +13,20 @@ class App extends Component {
     super(props);
     this.onPlayerMove = this.onPlayerMove.bind(this);
     this.setGameType = this.setGameType.bind(this);
+    this.displayResults = this.displayResults.bind(this);
     this.closePopup = this.closePopup.bind(this);
+    this.incrementTurnNumber = this.incrementTurnNumber.bind(this);
+    this.onGameEnd = this.onGameEnd.bind(this);
+    this.addGameResults = this.addGameResults.bind(this);
     this.state = {
       turn: null,
       gameType: null,
       showModal: false,
       currentTurnNumber: false,
       maxTurnNumber: false,
-      isGameFinished: false
+      isGameFinished: false,
+      turns: [],
+      games: []
     };
   }
 
@@ -30,6 +36,35 @@ class App extends Component {
   onPlayerMove(move) {
     let turn = resolveTurn(move);
     this.displayResults(turn);
+  }
+
+  onGameEnd(game) {
+    this.setState(prevState => ({
+      games: [...prevState.games, this.addGameResults(game)]
+    }));
+  }
+
+  addGameResults(game) {
+    let gameResult = {
+      result: 0,
+      scoreP1: 0,
+      scoreP2: 0
+    };
+    game.forEach(turn => {
+      if ('WIN' === turn.result) {
+        gameResult.scoreP1++;
+      } else if ('LOSE' === turn.result) {
+        gameResult.scoreP2++;
+      }
+    });
+    if (gameResult.scoreP1 > gameResult.scoreP2) {
+      gameResult.result = 'WIN';
+    } else if (gameResult.scoreP1 < gameResult.scoreP2) {
+      gameResult.result = 'DRAW';
+    } else {
+      gameResult.result = 'LOSE';
+    }
+    return [...game, gameResult];
   }
 
   incrementTurnNumber() {
@@ -42,9 +77,12 @@ class App extends Component {
 
   displayResults(currentTurn) {
     let gameStatus = false;
+    let updatedTurnArray = this.state.turns;
+    updatedTurnArray.push(currentTurn);
     let nextTurnNumber = this.incrementTurnNumber();
     if (nextTurnNumber === this.state.maxTurnNumber) {
       gameStatus = true;
+      this.onGameEnd(this.state.turns, gameStatus);
     }
     console.log('Turn number', nextTurnNumber);
     console.log('Game Status', gameStatus);
@@ -53,7 +91,8 @@ class App extends Component {
       turn: currentTurn,
       showModal: true,
       isGameFinished: gameStatus,
-      currentTurnNumber: nextTurnNumber
+      currentTurnNumber: nextTurnNumber,
+      turns: updatedTurnArray
     });
   }
 
@@ -62,7 +101,8 @@ class App extends Component {
       gameType: type,
       currentTurnNumber: 0,
       maxTurnNumber: turnNumber,
-      isGameFinished: false
+      isGameFinished: false,
+      turns: []
     });
   }
 
@@ -75,7 +115,11 @@ class App extends Component {
     let overlay = false;
     let modal = false;
     let gameStatus = this.state.isGameFinished;
-    if (this.state.showModal && this.state.turn) {
+    if (
+      this.state.showModal &&
+      this.state.turn &&
+      this.state.gameType === 'Player vs AI'
+    ) {
       modal = (
         <ModalPopup
           closePopup={this.closePopup}
@@ -102,8 +146,12 @@ class App extends Component {
         <div
           className={this.state.isGameFinished ? 'deactivation-panel' : ''}
         />
-        <GameResult isGameFinished={gameStatus} turn={this.state.turn} turnNumber={this.state.currentTurnNumber}/>
-        <PlayersHistory />
+        <GameResult
+          isGameFinished={gameStatus}
+          turnArray={this.state.turns}
+          turnNumber={this.state.currentTurnNumber}
+        />
+        <PlayersHistory gameHistory={this.state.games} />
       </React.StrictMode>
     );
     return (
