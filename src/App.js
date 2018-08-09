@@ -39,12 +39,18 @@ class App extends Component {
   }
 
   /**
-   * Add last game to the state
-   * @param {*} game
+   * Historizes current game results with details
+   * Details are: 
+   *  - result: game output from P1 perspective
+   *  - scoreP1: how many wins for P1
+   *  - scoreP2:  how many wins for P2
+   *  - gameType: 'Player vs AI' or 'AI vs AI'
+   * @param {*} game 
    */
   onGameEnd(game) {
+    let summarizedGame = this.addGameResults(game);
     this.setState(prevState => ({
-      games: [...prevState.games, this.addGameResults(game)]
+      games: [...prevState.games, summarizedGame]
     }));
   }
 
@@ -59,7 +65,7 @@ class App extends Component {
    * @param {*} game
    */
   addGameResults(game) {
-    let gameResult = summarizeGame(game);
+    let gameResult = summarizeGame(game, this.state.gameType);
     return [...game, gameResult];
   }
 
@@ -72,6 +78,10 @@ class App extends Component {
     return currentturnCount < maxturnCount ? currentturnCount + 1 : -1;
   }
 
+  /**
+   * Updates the state given current play and assess wether or not game is finished
+   * @param {*} currentTurn 
+   */
   displayResults(currentTurn) {
     let gameStatus = false;
     let updatedTurnArray = this.state.turns;
@@ -79,7 +89,7 @@ class App extends Component {
     let nextturnCount = this.incrementturnCount();
     if (nextturnCount === this.state.maxturnCount) {
       gameStatus = true;
-      this.onGameEnd(this.state.turns, gameStatus);
+      this.onGameEnd(this.state.turns);
     }
     // If turnCount gets out of boundaries, state is not updated
     if (nextturnCount !== -1) {
@@ -93,6 +103,11 @@ class App extends Component {
     }
   }
 
+  /**
+   * Reset new game and add game type
+   * @param {*} turnNumber 
+   * @param {*} type 
+   */
   setGameType(turnCount, type) {
     this.setState({
       gameType: type,
@@ -103,6 +118,9 @@ class App extends Component {
     });
   }
 
+  /**
+   * Close modal popup
+   */
   closePopup() {
     this.setState({ showModal: false });
   }

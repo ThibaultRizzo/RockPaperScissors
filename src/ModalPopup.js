@@ -16,32 +16,30 @@ function ResultComponent(props) {
   return result;
 }
 
+
+/**
+ * Modal popup Component
+ * TODO: Refactor it to allow more reusability and custom messages
+ */
 class ModalPopup extends Component {
-  constructor(props) {
-    super(props);
-    this.closePopup = this.closePopup.bind(this);
-  }
+
+    componentDidMount() {
+        setTimeout(this.props.closePopup, 1000);
+    }
 
   /**
    * Closes popup after one second
    */
-  closePopup() {
-    setTimeout(this.props.closePopup, 1000);
-  }
-
-  render() {
-    const result = this.props.result;
-    return (
-      <div
-        className="modal-background smooth-appear full-page-background"
-        onClick={this.closePopup()}
-      >
-        <div className="modal-popup">
-          <ResultComponent result={result} />
-        </div>
-      </div>
-    );
-  }
+    render() {
+        const result = this.props.result;
+        return (
+            <div className="modal-background smooth-appear full-page-background" onClick={this.props.closePopup}>
+                <div className="modal-popup">
+                    <ResultComponent result={result} />
+                </div>
+            </div>
+        );
+    }
 }
 
 export default ModalPopup;

@@ -10,7 +10,7 @@ class PlayersHistory extends Component {
       return (
         <div className={'game-row ' + details.result.toLowerCase()} key={i}>
           <div>{i + 1}</div>
-          <div>{details.result}</div>
+          <div>{details.gameType + ": " + details.result}</div>
           <div>{details.scoreP1 + ' - ' + details.scoreP2}</div>
         </div>
       );

@@ -13,13 +13,6 @@ function TurnRow(props) {
 }
 
 class GameResult extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      movesP1: [],
-      movesP2: []
-    };
-  }
 
   render() {
     if (!this.props.turnArray) {
@@ -28,6 +21,7 @@ class GameResult extends Component {
     let turnRows = this.props.turnArray.map((move, i) => (
       <TurnRow key={i} turnCount={i} turn={move} />
     ));
+    
     return (
       <div id="GameResult">
         <div className="result-grid">{turnRows}</div>

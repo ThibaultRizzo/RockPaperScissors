@@ -113,11 +113,12 @@ export function resolveTurn(moveP1) {
  *      }
  * @param {*} game
  */
-export function summarizeGame(game) {
+export function summarizeGame(game, gameType) {
   let gameResult = {
     result: null,
     scoreP1: 0,
-    scoreP2: 0
+    scoreP2: 0,
+    gameType: gameType,
   };
   game.forEach(turn => {
     if (Result.WIN === turn.result) {
