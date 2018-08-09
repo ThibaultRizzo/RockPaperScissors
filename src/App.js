@@ -139,7 +139,6 @@ class App extends Component {
         <ModalPopup
           closePopup={this.closePopup}
           result={this.state.turn.result}
-          turn={this.state.turn}
         />
       );
     }

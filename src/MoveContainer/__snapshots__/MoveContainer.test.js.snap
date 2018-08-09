@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  id="MoveContainer"
+>
+  <h1
+    className="game-type"
+  >
+    AI vs AI
+  </h1>
+  <h2
+    className="number-turn"
+  >
+    Number of turns: 
+    4
+  </h2>
+  <div
+    className="Move  "
+  >
+    <input
+      name="ROCK"
+      onClick={[Function]}
+      type="button"
+    />
+  </div>
+  <div
+    className="Move  "
+  >
+    <input
+      name="PAPER"
+      onClick={[Function]}
+      type="button"
+    />
+  </div>
+  <div
+    className="Move  "
+  >
+    <input
+      name="SCISSORS"
+      onClick={[Function]}
+      type="button"
+    />
+  </div>
+</div>
+`;

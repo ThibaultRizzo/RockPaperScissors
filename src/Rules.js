@@ -130,9 +130,9 @@ export function summarizeGame(game, gameType) {
   if (gameResult.scoreP1 > gameResult.scoreP2) {
     gameResult.result = Result.WIN;
   } else if (gameResult.scoreP1 < gameResult.scoreP2) {
-    gameResult.result = Result.DRAW;
-  } else {
     gameResult.result = Result.LOSE;
+  } else {
+    gameResult.result = Result.DRAW;
   }
   return gameResult;
 }

@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="full-page-background smooth-appear"
+  id="Overlay"
+>
+  <input
+    className="overlay-button special-button"
+    onClick={[Function]}
+    type="button"
+    value="Player vs AI"
+  />
+  <input
+    className="overlay-button special-button"
+    onClick={[Function]}
+    type="button"
+    value="AI vs AI"
+  />
+  <div
+    className="turn-dropdown"
+  >
+    <input
+      className="selected-dropdown-value dropdown-value"
+      onClick={[Function]}
+      type="button"
+      value={3}
+    />
+    <div
+      className="dropdown-content"
+    />
+  </div>
+</div>
+`;

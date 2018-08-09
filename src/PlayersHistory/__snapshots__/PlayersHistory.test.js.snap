@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  id="PlayersHistory"
+>
+  <h1>
+    Players History
+  </h1>
+  <div
+    className="game-row lose"
+  >
+    <div>
+      1
+    </div>
+    <div>
+      LOSE
+    </div>
+    <div>
+      0 - 2
+    </div>
+  </div>
+  <div
+    className="game-row draw"
+  >
+    <div>
+      2
+    </div>
+    <div>
+      DRAW
+    </div>
+    <div>
+      2 - 2
+    </div>
+  </div>
+  <div
+    className="game-row lose"
+  >
+    <div>
+      3
+    </div>
+    <div>
+      LOSE
+    </div>
+    <div>
+      1 - 2
+    </div>
+  </div>
+  <div
+    className="win-rate"
+  >
+    Win Rate: 
+    0%
+  </div>
+</div>
+`;

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="modal-background smooth-appear full-page-background"
+  onClick={undefined}
+>
+  <div
+    className="modal-popup"
+  >
+    <p
+      className="lose"
+    >
+      You lost !
+    </p>
+  </div>
+</div>
+`;

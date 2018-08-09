@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  id="Header"
+>
+  <header>
+    Waste an Hour Having Fun
+  </header>
+  <div
+    id="header-options"
+  >
+    <input
+      className="special-button "
+      onClick={[Function]}
+      type="button"
+      value="New Game"
+    />
+  </div>
+</div>
+`;

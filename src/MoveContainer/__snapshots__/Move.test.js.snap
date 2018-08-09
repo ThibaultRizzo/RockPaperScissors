@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="wrapper"
+>
+  <div
+    className="Move  "
+  >
+    <input
+      name="ROCK"
+      onClick={[Function]}
+      type="button"
+    />
+  </div>
+  <div
+    className="Move  "
+  >
+    <input
+      name="PAPER"
+      onClick={[Function]}
+      type="button"
+    />
+  </div>
+  <div
+    className="Move  "
+  >
+    <input
+      name="SCISSORS"
+      onClick={[Function]}
+      type="button"
+    />
+  </div>
+  <div
+    className="Move  "
+  >
+    <input
+      name="PAPER"
+      onClick={[Function]}
+      type="button"
+    />
+  </div>
+  <div
+    className="Move  "
+  >
+    <input
+      name="ROCK"
+      onClick={[Function]}
+      type="button"
+    />
+  </div>
+</div>
+`;
