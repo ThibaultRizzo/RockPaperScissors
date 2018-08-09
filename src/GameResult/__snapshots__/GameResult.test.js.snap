@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  id="GameResult"
+>
+  <div
+    className="result-grid"
+  >
+    <div
+      className="turn-row"
+    >
+      <div
+        className="lose player-1"
+      >
+        ROCK
+      </div>
+      <div
+        className="turn-number"
+      >
+        1
+      </div>
+      <div
+        className="lose player-2"
+      >
+        PAPER
+      </div>
+    </div>
+    <div
+      className="turn-row"
+    >
+      <div
+        className="lose player-1"
+      >
+        PAPER
+      </div>
+      <div
+        className="turn-number"
+      >
+        2
+      </div>
+      <div
+        className="lose player-2"
+      >
+        SCISSORS
+      </div>
+    </div>
+    <div
+      className="turn-row"
+    >
+      <div
+        className="draw player-1"
+      >
+        SCISSORS
+      </div>
+      <div
+        className="turn-number"
+      >
+        3
+      </div>
+      <div
+        className="draw player-2"
+      >
+        SCISSORS
+      </div>
+    </div>
+  </div>
+</div>
+`;

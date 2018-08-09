@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  id="App"
+>
+  <div
+    className="full-page-background smooth-appear"
+    id="Overlay"
+  >
+    <input
+      className="overlay-button special-button"
+      onClick={[Function]}
+      type="button"
+      value="Player vs AI"
+    />
+    <input
+      className="overlay-button special-button"
+      onClick={[Function]}
+      type="button"
+      value="AI vs AI"
+    />
+    <div
+      className="turn-dropdown"
+    >
+      <input
+        className="selected-dropdown-value dropdown-value"
+        onClick={[Function]}
+        type="button"
+        value={3}
+      />
+      <div
+        className="dropdown-content"
+      />
+    </div>
+  </div>
+  <div
+    id="Header"
+  >
+    <header>
+      Waste an Hour Having Fun
+    </header>
+    <div
+      id="header-options"
+    >
+      <input
+        className="special-button "
+        onClick={[Function]}
+        type="button"
+        value="New Game"
+      />
+    </div>
+  </div>
+  <div
+    id="MoveContainer"
+  >
+    <h1
+      className="game-type"
+    />
+    <h2
+      className="number-turn"
+    >
+      Number of turns: 
+    </h2>
+    <div
+      className="Move  "
+    >
+      <input
+        name="ROCK"
+        onClick={[Function]}
+        type="button"
+      />
+    </div>
+    <div
+      className="Move  "
+    >
+      <input
+        name="PAPER"
+        onClick={[Function]}
+        type="button"
+      />
+    </div>
+    <div
+      className="Move  "
+    >
+      <input
+        name="SCISSORS"
+        onClick={[Function]}
+        type="button"
+      />
+    </div>
+  </div>
+  <div
+    className=""
+  />
+  <div
+    id="GameResult"
+  >
+    <div
+      className="result-grid"
+    />
+  </div>
+  <div
+    id="PlayersHistory"
+  >
+    <h1>
+      Players History
+    </h1>
+    <div
+      className="win-rate"
+    >
+      Win Rate: 
+      0%
+    </div>
+  </div>
+</div>
+`;
