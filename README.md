@@ -1,5 +1,12 @@
 # RockPaperScissors
 
+Here is an overview of the game screens:
+
+![aivsai_game_screen](https://user-images.githubusercontent.com/6682727/43882742-20118652-9bb1-11e8-9011-f71e849c4a68.png)
+![menu_screen](https://user-images.githubusercontent.com/6682727/43882743-202e40bc-9bb1-11e8-9b72-64769cca15de.png)
+![playervsai_game_screen](https://user-images.githubusercontent.com/6682727/43882744-204ba6d4-9bb1-11e8-8fff-4e395f612437.png)
+
+
 To get started, launch the server with npm start as usual
 
 To be noted: This project being time-framed, a good UI was privileged at the expense of a backend server setup.
