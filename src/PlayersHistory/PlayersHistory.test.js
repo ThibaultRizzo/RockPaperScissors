@@ -8,7 +8,9 @@ const games = [
     { moveP1: 'SCISSORS', moveP2: 'ROCK', result: 'LOSE' },
     { moveP1: 'SCISSORS', moveP2: 'ROCK', result: 'LOSE' },
     { moveP1: 'SCISSORS', moveP2: 'SCISSORS', result: 'DRAW' },
-    { result: 'LOSE', scoreP1: 0, scoreP2: 2 }
+    {gameType
+      :
+      "AI vs AI", result: 'LOSE', scoreP1: 0, scoreP2: 2 }
   ],
   [
     { moveP1: 'PAPER', moveP2: 'ROCK', result: 'WIN' },
@@ -16,14 +18,18 @@ const games = [
     { moveP1: 'SCISSORS', moveP2: 'ROCK', result: 'LOSE' },
     { moveP1: 'PAPER', moveP2: 'PAPER', result: 'DRAW' },
     { moveP1: 'ROCK', moveP2: 'SCISSORS', result: 'WIN' },
-    { result: 'DRAW', scoreP1: 2, scoreP2: 2 }
+    { gameType
+      :
+      "Player vs AI",result: 'DRAW', scoreP1: 2, scoreP2: 2 }
   ],
   [
     { moveP1: 'ROCK', moveP2: 'SCISSORS', result: 'WIN' },
     { moveP1: 'PAPER', moveP2: 'SCISSORS', result: 'LOSE' },
     { moveP1: 'PAPER', moveP2: 'SCISSORS', result: 'LOSE' },
     { moveP1: 'PAPER', moveP2: 'PAPER', result: 'DRAW' },
-    { result: 'LOSE', scoreP1: 1, scoreP2: 2 }
+    { gameType
+      :
+      "Player vs AI",result: 'LOSE', scoreP1: 1, scoreP2: 2 }
   ]
 ];
 

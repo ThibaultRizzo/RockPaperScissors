@@ -3,7 +3,7 @@
 exports[`renders correctly 1`] = `
 <div
   className="modal-background smooth-appear full-page-background"
-  onClick={undefined}
+  onClick={[Function]}
 >
   <div
     className="modal-popup"

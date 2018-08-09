@@ -7,6 +7,7 @@ class PlayersHistory extends Component {
     let games;
     games = this.props.gameHistory.map((game, i) => {
       let details = game[game.length - 1];
+      debugger;
       return (
         <div className={'game-row ' + details.result.toLowerCase()} key={i}>
           <div>{i + 1}</div>

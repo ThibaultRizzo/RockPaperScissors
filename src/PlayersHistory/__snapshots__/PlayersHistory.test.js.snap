@@ -14,7 +14,7 @@ exports[`renders correctly 1`] = `
       1
     </div>
     <div>
-      LOSE
+      AI vs AI: LOSE
     </div>
     <div>
       0 - 2
@@ -27,7 +27,7 @@ exports[`renders correctly 1`] = `
       2
     </div>
     <div>
-      DRAW
+      Player vs AI: DRAW
     </div>
     <div>
       2 - 2
@@ -40,7 +40,7 @@ exports[`renders correctly 1`] = `
       3
     </div>
     <div>
-      LOSE
+      Player vs AI: LOSE
     </div>
     <div>
       1 - 2
